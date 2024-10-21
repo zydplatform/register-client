@@ -1,5 +1,6 @@
 <?php
-
+use Illuminate\Support\Facades\URL;
+URL::forceScheme('https');
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 

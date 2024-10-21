@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
+use App\Models\Post;
 
 class PostController extends Controller
 {
@@ -39,6 +43,10 @@ class PostController extends Controller
     public function show(string $id)
     {
         //
+
+        $post = Post::find($id);
+        
+        return view('posts.show', compact('post'));
     }
 
     /**
@@ -63,5 +71,15 @@ class PostController extends Controller
     public function destroy(string $id)
     {
         //
+
+        $post = Post::find($id);
+        $post-> delete();
+
+        return redirect-> route('posts.index')
+        ->with('success', "Post deleted successfully");
+    }
+
+    public function create(){
+        return view('posts.create');
     }
 }
